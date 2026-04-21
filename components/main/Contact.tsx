@@ -9,8 +9,8 @@ const EarthCanvas = dynamic(() => import("@/components/main/EarthCanvas"), {
 });
 
 const FORM_FIELDS = {
-  name:    { span: "Your Name",    placeholder: "What's your name?" },
-  email:   { span: "Your Email",   placeholder: "What's your email?" },
+  name: { span: "Your Name", placeholder: "What's your name?" },
+  email: { span: "Your Email", placeholder: "What's your email?" },
   message: { span: "Your Message", placeholder: "What do you want to say?" },
 };
 
@@ -18,23 +18,34 @@ const INITIAL_STATE = Object.fromEntries(
   Object.keys(FORM_FIELDS).map((key) => [key, ""])
 );
 
+// ✅ FINAL FIX (as const - no TypeScript error)
 const slideInLeft = {
   hidden: { x: -100, opacity: 0 },
   show: {
     x: 0,
     opacity: 1,
-    transition: { type: "tween", delay: 0.2, duration: 1, ease: "easeOut" },
+    transition: {
+      type: "tween",
+      delay: 0.2,
+      duration: 1,
+      ease: "easeOut",
+    },
   },
-};
+} as const;
 
 const slideInRight = {
   hidden: { x: 100, opacity: 0 },
   show: {
     x: 0,
     opacity: 1,
-    transition: { type: "tween", delay: 0.2, duration: 1, ease: "easeOut" },
+    transition: {
+      type: "tween",
+      delay: 0.2,
+      duration: 1,
+      ease: "easeOut",
+    },
   },
-};
+} as const;
 
 const Contact = () => {
   const formRef = useRef<HTMLFormElement>(null);
@@ -50,8 +61,14 @@ const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // EmailJS integration to be added later
-    alert("Contact form submitted! Email integration coming soon.");
+    setLoading(true);
+
+    // Simulated submit (replace with EmailJS later)
+    setTimeout(() => {
+      alert("Contact form submitted! Email integration coming soon.");
+      setLoading(false);
+      setForm(INITIAL_STATE);
+    }, 1000);
   };
 
   return (
