@@ -3,7 +3,7 @@
 import { SparklesIcon, ArrowDownTrayIcon } from "@heroicons/react/24/solid";
 import { motion } from "framer-motion";
 import Image from "next/image";
-
+import { getImageUrl } from "../../utils";
 import {
   slideInFromLeft,
   slideInFromRight,
@@ -35,7 +35,7 @@ export const HeroContent = () => {
 
           {/* Resume Button */}
           <a
-            href="/resume.pdf" 
+            href="" 
             target="_blank"
             rel="noopener noreferrer"
             className="ml-4 flex items-center gap-1 px-3 py-1 text-[12px] rounded-md bg-gradient-to-r from-purple-500 to-cyan-500 text-white hover:opacity-80 transition"
